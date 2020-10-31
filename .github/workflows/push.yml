@@ -72,6 +72,7 @@ jobs:
           export GOBIN=$GOPATH/bin
           export PATH=$PATH:$GOBIN:/usr/local/go/bin
           mkdir ~/go
+          mkdir tmp
 
           go get golang.org/x/mobile/cmd/gomobile
           gomobile init
