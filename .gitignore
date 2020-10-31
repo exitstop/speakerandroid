@@ -58,6 +58,7 @@
 !README
 !*.java
 !*.yml
+!gradlew
 Makefile
 # Использутей для этих типв файлов git lfs
 #!*.png
