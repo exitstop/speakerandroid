@@ -10,6 +10,7 @@
 !*scripts
 !*cmd
 !*cmd/speaker
+!*gomobilelib
 !*android
 !*android/app
 !*android/app/src
