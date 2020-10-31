@@ -43,17 +43,16 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         throw new UnsupportedOperationException("Not yet implemented");
-        //return null;
     }
     @Override
     public void onCreate() {
-        Toast.makeText(this, "Invoke background service onCreate method.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "MyService: onCreate()", Toast.LENGTH_LONG).show();
         super.onCreate();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "Service started by user.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "MyService: onStartCommand()", Toast.LENGTH_LONG).show();
 
         pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, TAG);
@@ -212,11 +211,10 @@ public class MyService extends Service {
                             file.getParentFile().mkdirs();
                             System.out.println("file " + file);
                         } else {
-                            file = new File("/storage/emulated/0/RAM Disk/" + fileName_);
-                            System.out.println("file " + file);
+                            return;
+//                            file = new File("/storage/emulated/0/RAM Disk/" + fileName_);
+//                            System.out.println("file " + file);
                         }
-
-                        //startTime = System.nanoTime();
 
                         mTts.synthesizeToFile(p0_, null, file, fileName_);
                         System.out.println("synthesizeToFile + ");
@@ -226,14 +224,16 @@ public class MyService extends Service {
                 Thread thread = new Thread(new OneShotTask(p0,fileName));
                 thread.start();
 
-                if ( flagRam_ != 0 ) {
-                    return "/storage/emulated/0/RAM Disk/";
-                }
+               //if ( flagRam_ != 0 ) {
+//                 return "/storage/emulated/0/RAM Disk/";
+                //}
                 return getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "/";
             }
 
             public void flagRam(long p0) {
-                flagRam_ = p0;
+                // Отключим ram
+                //flagRam_ = p0;
+                flagRam_ = 0;
             }
 
         });
@@ -289,6 +289,7 @@ public class MyService extends Service {
                     }
                 } else {
                     Log.e("error", "Initilization Failed!");
+                    return;
                 }
 
                 // com.google.android.tts
@@ -370,7 +371,7 @@ public class MyService extends Service {
             }
         }
          */
-        Toast.makeText(this, "Service destroyed by user.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "MyService: onDestroy()", Toast.LENGTH_LONG).show();
         super.onDestroy();
     }
 }
