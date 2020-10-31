@@ -33,28 +33,20 @@ jobs:
       #      run: chmod +x ./gradlew
       - name: Output version code
         run: echo VERSION_CODE=${{ github.run_number }} > ./version.properties
-      - name: Build with Gradle
-        run: ./gradlew assemble
-        env:
-          RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
-          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
-          PIN_ALIAS: ${{ secrets.PIN_ALIAS }}
-          DB_PASS_ALIAS: ${{ secrets.DB_PASS_ALIAS }}
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
-        with:
-          name: notification_tracker
-          path: app/build/outputs/apk/release/notification_tracker.release.apk
-      - name: Upload to PlayMarket
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
-          packageName: com.guralnya.notification_tracker
-          releaseFile: app/build/outputs/apk/release/notification_tracker.release.apk
-          track: beta
-          userFraction: 0.33
-          whatsNewDirectory: distribution/whatsnew
+      #- name: Upload APK
+        #uses: actions/upload-artifact@v2
+        #with:
+          #name: notification_tracker
+          #path: app/build/outputs/apk/release/notification_tracker.release.apk
+      #- name: Upload to PlayMarket
+        #uses: r0adkll/upload-google-play@v1
+        #with:
+          #serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          #packageName: com.guralnya.notification_tracker
+          #releaseFile: app/build/outputs/apk/release/notification_tracker.release.apk
+          #track: beta
+          #userFraction: 0.33
+          #whatsNewDirectory: distribution/whatsnew
       - name: 'install pre-build requirements ubuntu'
         run: |
           sudo apt update && ( sudo apt install -y sudo rsync wget git md5deep ssh)
@@ -88,11 +80,29 @@ jobs:
           export GO111MODULE=on
           export GOPROXY=direct
           export GOSUMDB=off
-          export PATH=$PATH:/usr/local/go/bin
+          export GOPATH=~/go
+          export GOBIN=$GOPATH/bin
+          export PATH=$PATH:$GOBIN:/usr/local/go/bin
 
+          go get golang.org/x/mobile/cmd/gomobile
+          gomobile init
+
+          gomobile bind -o tmp/gomobilelib.aar -target=android github.com/exitstop/speakerandroid/gomobilelib
+
+
+      - name: Build with Gradle
+        run: |
+          cd android
+          ./gradlew assemble
+        env:
+          RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          PIN_ALIAS: ${{ secrets.PIN_ALIAS }}
+          DB_PASS_ALIAS: ${{ secrets.DB_PASS_ALIAS }}
         working-directory: ./
       - name: 'Upload ${{ steps.get_name.outputs.NAME}}-0.0.0-${{ github.sha }}-artifact.zip package'
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.get_name.outputs.NAME}}-0.0.0-${{ github.sha }}-artifact
-          path: ./*.deb
+          path: ./android/app/build/outputs/apk/release/*.apk
