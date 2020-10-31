@@ -99,8 +99,12 @@ jobs:
 
       - name: Build with Gradle
         run: |
+          #./gradlew --stop
+          #rm -r build
+          #rm -r app/build
+          #./gradlew build
           cd android
-          ./gradlew assemble
+          ./gradlew assemble --stacktrace
         env:
           RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
