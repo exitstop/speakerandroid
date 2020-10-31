@@ -1,0 +1,76 @@
+# Сперва
+# Запрещаем вообще все
+*
+
+# Затем
+# Разрешаем мониторить эти папки
+!*configs/
+!*internal
+!*examples
+!*scripts
+!*cmd
+!*cmd/speaker
+!*android
+!*android/app
+!*android/app/src
+!*android/app/src/main
+!*android/app/src/main/res
+!*android/app/src/main/res/values
+!*android/app/src/main/res/layout
+!*android/app/src/main/java
+!*android/app/src/main/java/org
+!*android/app/src/main/java/org/golang
+!*android/app/src/main/java/org/golang/example
+!*android/app/src/main/java/org/golang/example/bind
+
+# И в этих папках брать только эти форматы
+!*.ini
+!.golangci.yml
+!.gitignore
+!.gitattributes
+!.gitmodules
+!go.mod
+!*.sh
+!*.go
+!*.gohtml
+!*.html
+!*.js
+!*.css
+!*.mod
+!*.json
+!*.conf
+!*.toml
+!*.vue
+!*.js
+!*.scss
+!*.sql
+!*.md
+!*.pth
+!*.so
+!*.gradle
+!*.xml
+!README
+!*.java
+Makefile
+# Использутей для этих типв файлов git lfs
+#!*.png
+
+# Запрещаем конкретные файлы
+go.sum
+
+# Запретили все что в папке
+configs/*
+# Кроме этого
+# Но хранить в гите картинки категорически нельзя,
+# нужно использовать git lfs
+# https://git-lfs.github.com/
+!configs/*.example.toml
+
+# Запрещаем папки
+public
+tmp
+
+build
+node_modules
+storage
+public
