@@ -64,6 +64,7 @@
 !gradlew
 !*.jar
 Makefile
+!*.properties
 # Использутей для этих типв файлов git lfs
 #!*.png
 
