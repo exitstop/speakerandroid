@@ -11,6 +11,8 @@
 !*cmd
 !*cmd/speaker
 !*gomobilelib
+!*.github
+!*.github/workflows
 !*android
 !*android/app
 !*android/app/src
@@ -55,6 +57,7 @@
 !*.xml
 !README
 !*.java
+!*.yml
 Makefile
 # Использутей для этих типв файлов git lfs
 #!*.png
