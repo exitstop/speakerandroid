@@ -22,6 +22,9 @@
 !*android/app/src/main/java/org/golang
 !*android/app/src/main/java/org/golang/example
 !*android/app/src/main/java/org/golang/example/bind
+!*android/app/src/main/java/com/
+!*android/app/src/main/java/com/example/
+!*android/app/src/main/java/com/example/speaker
 
 # И в этих папках брать только эти форматы
 !*.ini
