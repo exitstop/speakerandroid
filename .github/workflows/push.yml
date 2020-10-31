@@ -39,23 +39,23 @@ jobs:
         run: |
           sudo apt update && ( sudo apt install -y sudo rsync wget git md5deep ssh)
 
-          #mkdir -p ~/.ssh/key
-          #sudo chown -R $USER:$USER ~/.ssh
-          #echo "${{ secrets.SSH_PRIVATE }}" > ~/.ssh/id_rsa
-          #sudo chmod 600 ~/.ssh/id_rsa
+          mkdir -p ~/.ssh/key
+          sudo chown -R $USER:$USER ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE }}" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
 
-          #sudo cat << HERE > ~/.ssh/config
-            #Host *
-                #StrictHostKeyChecking no
+          sudo cat << HERE > ~/.ssh/config
+            Host *
+                StrictHostKeyChecking no
 
-            #Host github.com
-                #User git
-                #Hostname github.com
-                #PreferredAuthentications publickey
-                #IdentityFile ~/.ssh/id_rsa
-          #HERE
+            Host github.com
+                User git
+                Hostname github.com
+                PreferredAuthentications publickey
+                IdentityFile ~/.ssh/id_rsa
+          HERE
 
-          #sudo chown -R $USER:$USER ~/.ssh
+          sudo chown -R $USER:$USER ~/.ssh
 
           wget https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
           sudo tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
