@@ -1,11 +1,9 @@
 package main
 
-import (
-	"fmt"
-	"golang.org/x/mobile/exp/gl/glutil"
-)
+import "github.com/exitstop/speakerandroid/internal/server"
 
 func main() {
-	var images   *glutil.Images
-	fmt.Println(images)
+	serv := server.NewServer()
+	serv.ConfigureRouter()
+	server.Start(serv)
 }

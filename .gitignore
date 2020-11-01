@@ -6,6 +6,8 @@
 # Разрешаем мониторить эти папки
 !*configs/
 !*internal
+!*internal/lib
+!*internal/server
 !*examples
 !*scripts
 !*cmd
