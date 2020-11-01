@@ -1,18 +1,27 @@
 package com.example.speaker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.os.PowerManager;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextView;
+    protected PowerManager.WakeLock mWakeLock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+//        final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+//        this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "My Tag0");
+//        this.mWakeLock.acquire();
 
         Utils.getMACAddress("wlan0");
         Utils.getMACAddress("eth0");
