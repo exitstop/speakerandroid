@@ -18,6 +18,16 @@
 !*android/app/src
 !*android/app/src/main
 !*android/app/src/main/res
+!*android/app/src/main/res/
+!*android/app/src/main/res/drawable
+!*android/app/src/main/res/drawable-v24
+!*android/app/src/main/res/mipmap-anydpi-v26
+!*android/app/src/main/res/mipmap-hdpi
+!*android/app/src/main/res/mipmap-mdpi
+!*android/app/src/main/res/mipmap-xhdpi
+!*android/app/src/main/res/mipmap-xxhdpi
+!*android/app/src/main/res/mipmap-xxxhdpi
+!*android/app/src/main/res/values-night
 !*android/app/src/main/res/values
 !*android/app/src/main/res/layout
 !*android/app/src/main/java
@@ -65,6 +75,7 @@
 !*.jar
 Makefile
 !*.properties
+!*.png
 # Использутей для этих типв файлов git lfs
 #!*.png
 
