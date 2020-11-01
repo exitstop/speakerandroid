@@ -104,6 +104,7 @@ jobs:
           #rm -r app/build
           #./gradlew build
           cd android
+          ./gradlew --refresh-dependencies
           ./gradlew assemble --stacktrace
         env:
           RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
