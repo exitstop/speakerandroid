@@ -29,7 +29,7 @@ android {
 
 repositories {
     flatDir {
-        dirs '/home/bg/go/src/github.com/exitstop/speakerandroid/tmp'
+        dirs '../../tmp'
     }
 }
 
